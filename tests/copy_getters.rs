@@ -28,14 +28,6 @@ mod submodule {
             // /// A doc comment.
             // #[get_copy = "pub(super::other)"]
             // scope_accessible: usize,
-
-            // Prefixed getter.
-            #[get_copy = "with_prefix"]
-            private_prefixed: usize,
-
-            // Prefixed getter.
-            #[get_copy = "pub with_prefix"]
-            public_prefixed: usize,
         }
 
         impl Default for Plain {
@@ -43,8 +35,6 @@ mod submodule {
                 Plain {
                     private_accessible: 17,
                     public_accessible: 18,
-                    private_prefixed: 19,
-                    public_prefixed: 20,
                 }
             }
         }
@@ -115,12 +105,6 @@ mod submodule {
             let val = Where::<usize>::default();
             val.private_accessible();
         }
-
-        #[test]
-        fn test_prefixed_plain() {
-            let val = Plain::default();
-            assert_eq!(19, val.get_private_prefixed());
-        }
     }
 }
 
@@ -140,10 +124,4 @@ fn test_generic() {
 fn test_where() {
     let val = Where::<usize>::default();
     assert_eq!(usize::default(), val.public_accessible());
-}
-
-#[test]
-fn test_prefixed_plain() {
-    let val = Plain::default();
-    assert_eq!(20, val.get_public_prefixed());
 }

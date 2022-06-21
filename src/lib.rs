@@ -125,23 +125,6 @@ let mut foo = submodule::Foo::default();
 foo.public();
 ```
 
-For some purposes, it's useful to have the `get_` prefix on the getters for
-either legacy of compatibility reasons. It is done with `with_prefix`.
-
-```rust
-use getset::{Getters, MutGetters, CopyGetters, Setters};
-
-#[derive(Getters, Default)]
-pub struct Foo {
-    #[getset(get = "pub with_prefix")]
-    field: bool,
-}
-
-
-let mut foo = Foo::default();
-let val = foo.get_field();
-```
-
 Skipping setters and getters generation for a field when struct level attribute is used
 is possible with `#[getset(skip)]`.
 

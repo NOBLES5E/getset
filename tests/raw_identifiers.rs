@@ -11,10 +11,6 @@ struct RawIdentifiers {
     r#union: usize,
     #[set]
     r#enum: usize,
-    #[get = "with_prefix"]
-    r#const: usize,
-    #[get_copy = "with_prefix"]
-    r#if: usize,
     // Ensure having no gen mode doesn't break things.
     #[allow(dead_code)]
     r#loop: usize,
@@ -42,16 +38,4 @@ fn test_get_mut() {
 fn test_set() {
     let mut val = RawIdentifiers::default();
     val.set_enum(42);
-}
-
-#[test]
-fn test_get_with_prefix() {
-    let val = RawIdentifiers::default();
-    let _ = val.get_const();
-}
-
-#[test]
-fn test_get_copy_with_prefix() {
-    let val = RawIdentifiers::default();
-    let _ = val.get_if();
 }

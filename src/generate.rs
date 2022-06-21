@@ -55,16 +55,14 @@ pub fn parse_visibility(attr: Option<&Meta>, meta_name: &str) -> Option<Visibili
     match attr {
         // `#[get = "pub"]` or `#[set = "pub"]`
         Some(Meta::NameValue(MetaNameValue {
-            lit: Lit::Str(ref s),
-            path,
-            ..
-        })) => {
+                                 lit: Lit::Str(ref s),
+                                 path,
+                                 ..
+                             })) => {
             if path.is_ident(meta_name) {
-                s.value().split(' ').find(|v| *v != "with_prefix").map(|v| {
-                    syn::parse_str(v)
-                        .map_err(|e| syn::Error::new(s.span(), e))
-                        .expect_or_abort("invalid visibility found")
-                })
+                Some(syn::parse_str(s.value().as_ref())
+                    .map_err(|e| syn::Error::new(s.span(), e))
+                    .expect_or_abort("invalid visibility found"))
             } else {
                 None
             }
