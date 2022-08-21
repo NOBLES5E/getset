@@ -1,5 +1,5 @@
 [package]
-name = "getset"
+name = "getset-scoped"
 description = """
 Getset, we're ready to go!
 

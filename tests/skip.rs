@@ -1,5 +1,5 @@
 #[macro_use]
-extern crate getset;
+extern crate getset_scoped;
 
 #[derive(CopyGetters, Setters)]
 #[getset(get_copy, set)]

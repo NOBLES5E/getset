@@ -1,5 +1,5 @@
 #[macro_use]
-extern crate getset;
+extern crate getset_scoped;
 
 use crate::submodule::other::{Generic, Plain, Where};
 

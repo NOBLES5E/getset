@@ -14,7 +14,7 @@ Getters are generated as `fn field(&self) -> &type`, while setters are generated
 These macros are not intended to be used on fields which require custom logic inside of their setters and getters. Just write your own in that case!
 
 ```rust
-use getset::{CopyGetters, Getters, MutGetters, Setters};
+use getset_scoped::{CopyGetters, Getters, MutGetters, Setters};
 
 #[derive(Getters, Setters, MutGetters, CopyGetters, Default)]
 pub struct Foo<T>
@@ -43,7 +43,7 @@ fn main() {
 You can use `cargo-expand` to generate the output. Here are the functions that the above generates (Replicate with `cargo expand --example simple`):
 
 ```rust
-use getset::{Getters, MutGetters, CopyGetters, Setters};
+use getset_scoped::{Getters, MutGetters, CopyGetters, Setters};
 pub struct Foo<T>
 where
     T: Copy + Clone + Default,
@@ -115,7 +115,7 @@ precedence.
 
 ```rust
 #[macro_use]
-extern crate getset;
+extern crate getset_scoped;
 
 mod submodule {
     #[derive(Getters, CopyGetters, Default)]
@@ -141,7 +141,7 @@ either legacy of compatability reasons. It is done with `with_prefix`.
 
 ```rust
 #[macro_use]
-extern crate getset;
+extern crate getset_scoped;
 
 #[derive(Getters, Default)]
 pub struct Foo {
@@ -159,7 +159,7 @@ Skipping setters and getters generation for a field when struct level attribute 
 is possible with `#[getset(skip)]`.
 
 ```rust
-use getset::{CopyGetters, Setters};
+use getset_scoped::{CopyGetters, Setters};
 
 #[derive(CopyGetters, Setters)]
 #[getset(get_copy, set)]
